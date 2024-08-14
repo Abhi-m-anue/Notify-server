@@ -61,8 +61,7 @@ const task = async()=>{
             await monitor.save();
         })
     }
-    console.log("running"); 
     
 }
 
-nodeCron.schedule("* * * * *", task);
+nodeCron.schedule("*/30 * * * * *", task);
