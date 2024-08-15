@@ -10,7 +10,7 @@ const errorHandlerMiddleware = (error,req,res,next)=>{
       customError.message = Object.values(error.errors).map((item)=> item.message).join(',')
     }
     if(error.code && error.code === 11000){// duplicate key error
-      customError.message = `The ${
+      customError.message = `This ${
         Object.keys(error.keyValue)[Object.keys(error.keyValue).length - 1] // modifying the error msg to make it more meaningful
       } already exists`;                                                    // console log 'error' to get better understanding
       customError.statusCode = 400;
