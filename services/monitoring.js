@@ -42,14 +42,14 @@ const task = async () => {
             success = true;
             break;
           } else {
-            console.log(
-              `${new Date()} - ${monitor} is down. Attempt ${i + 1} failed`
-            );
+            // console.log(
+            //   `${new Date()} - ${monitor} is down. Attempt ${i + 1} failed`
+            // );
           }
         } catch (err) {
-          console.log(
-            `${new Date()} - ${monitor} is down. Attempt ${i + 1} failed`
-          );
+          // console.log(
+          //   `${new Date()} - ${monitor} is down. Attempt ${i + 1} failed`
+          // );
         }
       }
       if (success) {
@@ -58,6 +58,7 @@ const task = async () => {
         if (monitor.status === "ok") {
           //only send email when previous status was ok and now down
           await sendEmailAlert(monitor);
+          console.log(`${monitor.url} is down!! All ${attempts} attempts failed. `)
         }
         monitor.status = "down";
       }
