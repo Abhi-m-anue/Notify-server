@@ -4,11 +4,14 @@ const Monitor = require("../models/monitors");
 const NotFoundError = require("../errors/not-found");
 
 const createMonitor = async (req, res) => {
-  const { url } = req.body;
+  const { url, alertEmail } = req.body;
   if (!url) {
     throw new BadRequestError("Please provide the URL to monitor");
   }
-  req.body = {...req.body, alertEmail:req.user.email,createdBy:req.user.userId}
+  if(!alertEmail){
+    req.body = {...req.body, alertEmail : req.user.email}
+  }
+  req.body = {...req.body, createdBy:req.user.userId}
   const monitor = await Monitor.create({ ...req.body });
   res.status(StatusCodes.CREATED).json({ monitor });
 };
