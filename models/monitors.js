@@ -7,8 +7,8 @@ const monitorSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum : ['ok','down'],
-        default : 'ok',
+        enum : ['up','down'],
+        default : 'up',
     },
     alertMethod : {
         type : String,
